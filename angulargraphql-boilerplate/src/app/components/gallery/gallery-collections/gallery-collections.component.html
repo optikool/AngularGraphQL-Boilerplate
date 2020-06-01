@@ -1,0 +1,30 @@
+<h2>{{ heading }}</h2>
+<mat-grid-list cols="{{columns}}" rowHeight="2:1">
+    <mat-grid-tile 
+        *ngFor="let item of galleries | async; trackBy: handleTrackBy"
+        appFancyCaptionEffect
+        (setIsActive)="handleIsActive($event, item)">
+        <div 
+            class="fancy-gallery-cont"
+            [@fancyCaptionLoadState]="item.isActive">
+            <div 
+                class="fancy-gallery-top"
+                [@fancyCaptionTopLoadState]="item.isActive"></div>
+            <div class="fancy-gallery-body">
+                <img class="img-fluid" [src]="getThumbnail(item.thumbnail.url)" />
+            </div>
+            <div 
+                class="fancy-gallery-bottom"
+                [@fancyCaptionBottomLoadState]="item.isActive">
+                <h6>{{ item.name }}</h6>
+                <div>{{ item.cagetory.name }}</div>
+            </div>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<!-- <cdk-virtual-scroll-viewport  style="height: 500px" itemSize="90" >
+    <ng-container *cdkVirtualFor="let n of numbers">
+      <li> {{n}} </li>
+    </ng-container>
+  </cdk-virtual-scroll-viewport> -->
