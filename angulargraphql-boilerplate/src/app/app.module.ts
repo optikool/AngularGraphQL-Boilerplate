@@ -41,7 +41,7 @@ import { DirectivesModule } from './directives/directives.module';
     ApolloModule,
     HttpLinkModule
   ],
-  providers: [],
+  providers: [DirectivesModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

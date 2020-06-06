@@ -16,7 +16,7 @@ export class AppComponent {
     this.apollo.create({
       link: this.httpLink.create({uri: 'http://localhost:1337/graphql'}),
       cache: new InMemoryCache({
-        addTypename: false
+        addTypename: true
       }),
       defaultOptions: {
         watchQuery: {

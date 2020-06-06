@@ -7,6 +7,7 @@ import { VideoCollectionComponent } from './video/video-collection/video-collect
 import { VideoCollectionsComponent } from './video/video-collections/video-collections.component';
 import { VideoFceComponent } from './video/video-fce/video-fce.component';
 import { MaterialsModule } from '../helpers/materials/materials.module';
+import { DirectivesModule } from '../directives/directives.module';
 
 
 
@@ -21,7 +22,8 @@ import { MaterialsModule } from '../helpers/materials/materials.module';
   ],
   imports: [
     CommonModule,
-    MaterialsModule
+    MaterialsModule,
+    DirectivesModule
   ],
   exports: [
     GalleryCollectionComponent,

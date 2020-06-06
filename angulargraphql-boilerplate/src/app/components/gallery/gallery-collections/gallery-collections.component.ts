@@ -3,13 +3,18 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 
 import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
 
+import {
+  galleryCollections
+} from './graphql/get-response';
 import { 
   fancyCaptionLoadTrigger, 
   fancyCaptionBottomLoadTrigger, 
   fancyCaptionTopLoadTrigger  
 } from '../../../animations/fancy-caption.animation';
+import { 
+  Collection 
+} from '../../../interfaces/collection';
 
 @Component({
   selector: 'app-gallery-collections',
@@ -27,7 +32,7 @@ export class GalleryCollectionsComponent implements OnInit, OnDestroy {
   @Input() public columns: number;
 
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
-  galleries: Observable<any[]>;
+  galleries: Observable<[Collection]>;
 
   constructor(
     private apollo: Apollo
@@ -37,17 +42,15 @@ export class GalleryCollectionsComponent implements OnInit, OnDestroy {
     this.galleries = this.getGalleryCollections();
   }
 
-  handleIsActive(event: {state: string}, data: any) {
-    console.log('handleIsActive event.state: ', event.state);
-    console.log('handleIsActive data.isActive: ', data.isActive);
+  handleIsActive(event: {state: string}, data: any): void {
     data.isActive = event.state;
   }
 
-  getThumbnail(thumbnail: string) {
+  getThumbnail(thumbnail: string): string {
     return 'http://localhost:1337' + thumbnail;
   }
 
-  handleTrackBy(index, item) {
+  handleTrackBy(index, item): number {
     return index;
   }
 
@@ -56,43 +59,7 @@ export class GalleryCollectionsComponent implements OnInit, OnDestroy {
     this.destroyed$.complete();
   }
 
-  private getGalleryCollections() {
-    const galleryCollections = gql`
-      query collections($limit: Int) {
-        collections(limit: $limit) {
-          name
-          description
-          created_date
-          thumbnail {
-            name
-            url
-            id
-            hash
-            ext
-          }
-          cagetory {
-            name
-            description
-            thumbnail {
-              name
-              url
-              id
-              hash
-              ext
-            }
-          }
-          gallery {
-            name
-            url
-            id
-            hash
-            ext
-          }
-          id
-        }
-      }
-    `;
-
+  private getGalleryCollections(): Observable<[Collection]> {
     return this.apollo.watchQuery<any>({
       query: galleryCollections,
       variables: {
@@ -103,13 +70,12 @@ export class GalleryCollectionsComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.destroyed$))
     .pipe(
       map(result => {
-        console.log('result: ', result);
         return result.data.collections
           .slice(0, this.limit)
           .map((collection) => {
             return {
               ...collection,
-              isActive: false
+              isActive: 'inactive'
             };
           });
       })
