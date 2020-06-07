@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GalleryCollectionsComponent } from './gallery-collections.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ApolloTestingModule } from 'apollo-angular/testing';
+import { HomeComponent } from 'src/app/views/home/home.component';
+import { Apollo } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular-link-http';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('GalleryCollectionsComponent', () => {
   let component: GalleryCollectionsComponent;
@@ -8,7 +14,17 @@ describe('GalleryCollectionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GalleryCollectionsComponent ]
+      imports: [
+        RouterTestingModule,
+        ApolloTestingModule
+      ],
+      declarations: [ GalleryCollectionsComponent ],
+      providers: [
+        Apollo,
+        HttpLink,
+        HttpClient,
+        HttpHandler
+      ]
     })
     .compileComponents();
   }));

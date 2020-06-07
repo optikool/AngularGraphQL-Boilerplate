@@ -13,23 +13,6 @@ describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        ApolloTestingModule
-      ],
-      declarations: [ HomeComponent ],
-      providers: [
-        Apollo,
-        HttpLink,
-        HttpClient,
-        HttpHandler
-      ]
-    })
-    .compileComponents();
-  }));
-
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;

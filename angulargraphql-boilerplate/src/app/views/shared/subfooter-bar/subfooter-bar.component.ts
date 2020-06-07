@@ -5,11 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './subfooter-bar.component.html',
   styleUrls: ['./subfooter-bar.component.scss']
 })
-export class SubfooterBarComponent implements OnInit {
+export class SubfooterBarComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

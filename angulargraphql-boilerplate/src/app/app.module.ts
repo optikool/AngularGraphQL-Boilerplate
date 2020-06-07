@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { ApolloModule } from 'apollo-angular';
-import { HttpLinkModule } from 'apollo-angular-link-http';
+import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -16,6 +16,7 @@ import { MaterialsModule } from './helpers/materials/materials.module';
 import { ViewsModule } from './views/views.module';
 import { ComponentsModule } from './components/components.module';
 import { DirectivesModule } from './directives/directives.module';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,26 @@ import { DirectivesModule } from './directives/directives.module';
     ApolloModule,
     HttpLinkModule
   ],
-  providers: [DirectivesModule],
+  providers: [{
+      provide: APOLLO_OPTIONS,
+      useFactory: (httpLink: HttpLink) => {
+        return {
+          cache: new InMemoryCache({
+            addTypename: false
+          }),
+          link: httpLink.create({
+            uri: 'http://localhost:1337/graphql'
+          }),
+          defaultOptions: {
+            watchQuery: {
+              errorPolicy: 'all'
+            }
+          }
+        }
+      },
+      deps: [HttpLink]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

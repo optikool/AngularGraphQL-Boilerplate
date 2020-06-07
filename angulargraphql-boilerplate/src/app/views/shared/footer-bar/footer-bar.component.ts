@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,12 +6,9 @@ import { Router } from '@angular/router';
   templateUrl: './footer-bar.component.html',
   styleUrls: ['./footer-bar.component.scss']
 })
-export class FooterBarComponent implements OnInit {
+export class FooterBarComponent {
 
   constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   navigateToPage(page) {
     console.log('navigating to page: ', page);
