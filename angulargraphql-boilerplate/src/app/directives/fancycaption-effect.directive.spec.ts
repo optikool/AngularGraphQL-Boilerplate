@@ -1,7 +1,7 @@
 import { FancycaptionEffectDirective } from './fancycaption-effect.directive';
 
 describe('FancycaptionEffectDirective', () => {
-  it('should create an instance', () => {
+  it('instance should be created', () => {
     const directive = new FancycaptionEffectDirective();
     expect(directive).toBeTruthy();
   });

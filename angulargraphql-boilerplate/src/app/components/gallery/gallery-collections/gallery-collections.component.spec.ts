@@ -35,7 +35,7 @@ describe('GalleryCollectionsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create GalleryCollectionsComponent', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
 
