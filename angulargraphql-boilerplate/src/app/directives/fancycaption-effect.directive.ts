@@ -12,13 +12,11 @@ export class FancycaptionEffectDirective {
   @Output() public setIsActive: EventEmitter<{state: string}> = new EventEmitter();
 
   @HostListener('mouseenter', ['$event']) public onMouseOver(event) {
-    console.log('FancycaptionEffectDirective mouseover active: ', event);
-    this.setIsActive.emit({state: 'active'});
+    this.handleIsActive({state: 'active'});
   }
 
   @HostListener('mouseleave', ['$event']) public onMouseOut(event) {
-    console.log('FancycaptionEffectDirective mouseout inactive: ', event);
-    this.setIsActive.emit({state: 'inactive'});
+    this.handleIsActive({state: 'inactive'});
   }
 
   @HostListener('click', ['$event.target']) public onClick(event) {
@@ -27,4 +25,7 @@ export class FancycaptionEffectDirective {
 
   constructor() { }
 
+  private handleIsActive(state: { state: string }): void {
+    this.setIsActive.emit(state);
+  }
 }

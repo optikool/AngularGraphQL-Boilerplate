@@ -86,8 +86,8 @@ export class HeaderBarComponent implements OnInit {
         this.enteredButton = true;
         this.prevButtonTrigger = trigger
         trigger.openMenu();
-        this.render.removeClass(trigger.menu.items.first['_elementRef'].nativeElement, 'cdk-focused');
-        this.render.removeClass(trigger.menu.items.first['_elementRef'].nativeElement, 'cdk-program-focused');
+        // this.render.removeClass(trigger.menu.items.first['_elementRef'].nativeElement, 'cdk-focused');
+        // this.render.removeClass(trigger.menu.items.first['_elementRef'].nativeElement, 'cdk-program-focused');
       }
       else {
         this.enteredButton = true;

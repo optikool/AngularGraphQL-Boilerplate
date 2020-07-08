@@ -16,7 +16,12 @@ import { MaterialsModule } from './helpers/materials/materials.module';
 import { ViewsModule } from './views/views.module';
 import { ComponentsModule } from './components/components.module';
 import { DirectivesModule } from './directives/directives.module';
+// import { ResolversModule } from './resolvers/resolvers.module';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+
+import { HomeResolver } from './resolvers/home.resolver';
+import { GalleryModule } from './views/gallery/gallery.module';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,9 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
     DirectivesModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     StoreModule.forRoot({}, {}),
-    NgbModule
+    NgbModule,
+    GalleryModule,
+    EffectsModule.forRoot([])
   ],
   exports: [
     HttpClientModule,
@@ -60,7 +67,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
         }
       },
       deps: [HttpLink]
-    }
+    },
+    HomeResolver
   ],
   bootstrap: [AppComponent]
 })

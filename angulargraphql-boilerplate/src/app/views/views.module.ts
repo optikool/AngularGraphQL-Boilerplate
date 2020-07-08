@@ -16,7 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MaterialsModule } from '../helpers/materials/materials.module';
 import { ComponentsModule } from '../components/components.module';
-
+// import { GalleryComponent } from './gallery/gallery.component';
 
 @NgModule({
   declarations: [

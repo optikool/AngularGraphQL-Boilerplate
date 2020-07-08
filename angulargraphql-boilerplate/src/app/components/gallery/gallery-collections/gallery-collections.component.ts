@@ -50,7 +50,7 @@ export class GalleryCollectionsComponent implements OnInit, OnDestroy {
     return 'http://localhost:1337' + thumbnail;
   }
 
-  handleTrackBy(index, item): number {
+  handleTrackBy(index): number {
     return index;
   }
 

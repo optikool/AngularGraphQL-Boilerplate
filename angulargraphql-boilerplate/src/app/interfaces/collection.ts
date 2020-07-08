@@ -5,7 +5,7 @@ export interface Collection {
     created_date: Date;
     thumbnail: UploadFile;
     cagetory: Category;
-    gallery: [UploadFile]
+    gallery: Array<UploadFile>
 }
 
 export interface Category {
@@ -13,7 +13,7 @@ export interface Category {
     name: string;
     description: string;
     thumbnail: UploadFile;
-    collections: [Collection];
+    collections: Array<Collection>;
 }
 
 export interface UploadFile {
@@ -29,5 +29,5 @@ export interface CollectionResponse {
 }
 
 export interface CollectionPayload {
-    collections: [Collection];
+    collections: Array<Collection>;
 }

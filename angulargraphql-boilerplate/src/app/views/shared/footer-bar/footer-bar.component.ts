@@ -11,7 +11,6 @@ export class FooterBarComponent {
   constructor(private router: Router) { }
 
   navigateToPage(page) {
-    console.log('navigating to page: ', page);
     this.router.navigate(page);
   }
 }
